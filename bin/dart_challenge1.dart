@@ -13,18 +13,42 @@ void main(List<String> arguments) {
     'Spaghetti': ['tomatoes', 'onions', 'pepper', 'spaghetti'],
   };
   // Add a new recipe
-  recipes['Lasagna'] = ['eggs', 'flour', 'sugar', 'milk', 'butter'];
+  addNewRecipe(
+    recipes: recipes,
+    key: 'key',
+    value: ['value1', 'value2', 'value'],
+  );
   // List all recipes and their ingredients
   print('____________******_____________');
   print(recipes);
   // Remove a recipe
-  recipes.remove('Pancakes');
+  removeKeyOfMap(recipes: recipes, key: 'key');
   // List all recipes and their ingredients
   print('____________######_____________');
-  print(recipes);
+  myPrintFunction(recipes);
   // Search for a recipe by name and display its ingredients
   print('____________***_____________');
-  if (recipes.containsKey('Spaghetti')) {
-    print(recipes['Spaghetti']);
+  mySearchFunction(recipes: recipes, key: 'Pancakes');
+}
+
+void mySearchFunction({required Map<String, List<String>> recipes, required String key}) {
+  if (recipes.containsKey(key)) {
+    print(recipes[key]);
   }
+}
+
+void myPrintFunction(var recipes) {
+  print(recipes);
+}
+
+void removeKeyOfMap({required Map<String, List<String>> recipes,required String key}) {
+  recipes.remove(key);
+}
+
+void addNewRecipe({
+  required Map<String, List<String>> recipes,
+  required String key,
+  required List<String> value,
+}) {
+  recipes[key] = value;
 }
